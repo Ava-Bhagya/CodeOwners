@@ -13,11 +13,11 @@ jobs:
     steps:
     - name: Check if CODEOWNERS file exists
       run: |
-        if [ -f ".github/CODEOWNERS" ]; then
+        if [ -f "CODEOWNERS" ]; then
           echo "CODEOWNERS file found. Proceeding with code review enforcement."
         else
           echo "CODEOWNERS file not found. No code review enforcement required."
-          exit 1
+          exit 0
         fi
 
     - name: Get Target Branch
