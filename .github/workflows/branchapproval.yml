@@ -18,7 +18,7 @@ jobs:
           echo "CODEOWNERS file found. Proceeding with code review enforcement."
         else
           echo "CODEOWNERS file not found. No code review enforcement required."
-          exit 0
+          exit 1
         fi
 
     - name: Get Target Branch
