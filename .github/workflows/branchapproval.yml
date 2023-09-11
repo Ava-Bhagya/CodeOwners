@@ -13,12 +13,13 @@ jobs:
     steps:
     - name: Check if CODEOWNERS file exists
       run: |
+        cd $GITHUB_WORKSPACE  # Change the working directory to the root of the repository
         ls -R  # List all files and directories recursively
-        if [ -f "Ava-Bhagya/CodeOwners/CodeOwners file" ]; then
+        if [ -f "Ava-Bhagya/CodeOwners/CODEOWNERS" ]; then
           echo "CODEOWNERS file found. Proceeding with code review enforcement."
         else
           echo "CODEOWNERS file not found. No code review enforcement required."
-          exit 1
+          exit 0
         fi
 
     - name: Get Target Branch
