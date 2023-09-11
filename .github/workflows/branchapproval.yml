@@ -23,7 +23,7 @@ jobs:
     - name: Copy CODEOWNERS file (if needed)
       run: |
         # If your CODEOWNERS file is in a different directory, copy it to the root of your repository
-        cp /Ava-Bhagya/CodeOwners/CodeOwners $GITHUB_WORKSPACE/CODEOWNERS
+        cp /Ava-Bhagya/CodeOwners/CodeOwners file $GITHUB_WORKSPACE/CODEOWNERS
 
     - name: Get Target Branch
       id: branch_info
