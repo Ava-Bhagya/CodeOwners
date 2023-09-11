@@ -1,0 +1,51 @@
+name: Branch Approval Workflow
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  branch_approval:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check if CODEOWNERS file exists
+      run: |
+        if [ -f "CODEOWNERS" ]; then
+          echo "CODEOWNERS file found."
+        else
+          echo "CODEOWNERS file not found. No code review enforcement required."
+          exit 0
+        fi
+
+    - name: Get Target Branch
+      id: branch_info
+      run: |
+        TARGET_BRANCH=$(jq -r .pull_request.base.ref $GITHUB_EVENT_PATH)
+        echo "::set-output name=target_branch::$TARGET_BRANCH"
+
+    - name: Request Code Review
+      run: |
+        TARGET_BRANCH="${{ steps.branch_info.outputs.target_branch }}"
+        PR_AUTHOR=$(jq -r .pull_request.user.login $GITHUB_EVENT_PATH)
+
+        if [ "$TARGET_BRANCH" = "QC" ]; then
+          # Request approval from L1 lead
+          REVIEWER="L1_lead_username"
+        elif [ "$TARGET_BRANCH" = "dev" ]; then
+          # Request approval from L2 lead
+          REVIEWER="L2_lead_username"
+        elif [ "$TARGET_BRANCH" = "production" ]; then
+          # Request approval from L3 lead
+          REVIEWER="L3_lead_username"
+        else
+          echo "No specific branch approval required."
+          exit 0
+        fi
+
+        # Use `gh` command to request the review
+        gh pr review-request add --reviewer "@$REVIEWER" --branch "${{ github.head_ref }}"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
