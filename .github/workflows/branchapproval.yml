@@ -15,11 +15,11 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE  # Change the working directory to the root of the repository
         ls -R  # List all files and directories recursively
-        if [ -f "Ava-Bhagya/CodeOwners/CODEOWNERS" ]; then
+        if [ -f "CODEOWNERS" ]; then
           echo "CODEOWNERS file found. Proceeding with code review enforcement."
         else
           echo "CODEOWNERS file not found. No code review enforcement required."
-          exit 0
+          exit 1
         fi
 
     - name: Get Target Branch
@@ -36,9 +36,6 @@ jobs:
         if [ "$TARGET_BRANCH" = "QA" ]; then
           # Request approval from L1 lead
           REVIEWER="L1_Ava-JeevaYovanE"
-        elif [ "$TARGET_BRANCH" = "dev" ]; then
-          # Request approval from L2 lead
-          REVIEWER="L2_Srihariharan"
         elif [ "$TARGET_BRANCH" = "production" ]; then
           # Request approval from L3 lead
           REVIEWER="L3_jasperalwin"
