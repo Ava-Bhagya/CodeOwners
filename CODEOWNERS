@@ -1,8 +1,5 @@
-# For QC branch, L1 lead is the code owner
+# For QA branch, L1 lead is the code owner
 /QA/ @L1_Ava-JeevaYovanE
-
-# For dev branch, L2 lead is the code owner
-/dev/ @L2_Srihariharan
 
 # For production branch, L3 lead is the code owner
 /prod/ @L3_jasperalwin
