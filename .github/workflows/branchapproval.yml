@@ -15,7 +15,7 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE  # Change the working directory to the root of the repository
         ls -R  # List all files and directories recursively
-        if [ -f "CODEOWNERS" ]; then
+        if [ -f ".github/CODEOWNERS" ]; then
           echo "CODEOWNERS file found. Proceeding with code review enforcement."
         else
           echo "CODEOWNERS file not found. No code review enforcement required."
