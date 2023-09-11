@@ -13,12 +13,18 @@ jobs:
     steps:
     - name: Check if CODEOWNERS file exists
       run: |
-        if [ -f "CODEOWNERS" ]; then
+        if [ -f "Ava-Bhagya/CodeOwners/CodeOwners file" ]; then
           echo "CODEOWNERS file found."
         else
           echo "CODEOWNERS file not found. No code review enforcement required."
           exit 0
         fi
+
+    - name: Copy CODEOWNERS file (if needed)
+      run: |
+        # If your CODEOWNERS file is in a different directory, copy it to the root of your repository
+        cp /Ava-Bhagya/CodeOwners/CodeOwners file $GITHUB_WORKSPACE/
+
 
     - name: Get Target Branch
       id: branch_info
