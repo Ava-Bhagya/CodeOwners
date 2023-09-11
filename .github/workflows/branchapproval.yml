@@ -20,11 +20,6 @@ jobs:
           exit 0
         fi
 
-    - name: Copy CODEOWNERS file (if needed)
-      run: |
-        # If your CODEOWNERS file is in a different directory, copy it to the root of your repository
-        cp /Ava-Bhagya/CodeOwners/CodeOwners file $GITHUB_WORKSPACE/
-       
     - name: Get Target Branch
       id: branch_info
       run: |
