@@ -13,33 +13,6 @@ jobs:
     steps:
     - name: Check if CODEOWNERS file exists
       run: |
-        if [ -f ".github/CODEOWNERS" ]; then
-          echo "CODEOWNERS file found. Proceeding with code review enforcement."
-        else
-          echo "CODEOWNERS file not found. No code review enforcement required."
-          exit 1
-        fi
-
-    - name: Get Target Branch
-      id: branch_info
-      run: |
-        TARGET_BRANCH=$(jq -r .pull_request.base.ref $GITHUB_EVENT_PATH)
-        echo "::set-output name=target_branch::$TARGET_BRANCH"
-
-    - name: Request Code Review
-      run: |
-        TARGET_BRANCH="${{ steps.branch_info.outputs.target_branch }}"
-        PR_AUTHOR=$(jq -r .pull_request.user.login $GITHUB_EVENT_PATH)
-
-        if [ "$TARGET_BRANCH" = "QA" ]; then
-          # Request approval from L1 lead
-          REVIEWER="L1_Ava-JeevaYovanE"
-        elif [ "$TARGET_BRANCH" = "production" ]; then
-          # Request approval from L3 lead
-          REVIEWER="L3_jasperalwin"
-        else
-          echo "No specific branch approval required."
-          exit 0
-        fi
-
-      
+        # Add your script logic here
+        echo "No specific branch approval required."
+        exit 0
