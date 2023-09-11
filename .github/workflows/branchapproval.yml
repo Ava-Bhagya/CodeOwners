@@ -31,7 +31,7 @@ jobs:
         TARGET_BRANCH="${{ steps.branch_info.outputs.target_branch }}"
         PR_AUTHOR=$(jq -r .pull_request.user.login $GITHUB_EVENT_PATH)
 
-        if [ "$TARGET_BRANCH" = "QC" ]; then
+        if [ "$TARGET_BRANCH" = "QA" ]; then
           # Request approval from L1 lead
           REVIEWER="L1_Ava-JeevaYovanE"
         elif [ "$TARGET_BRANCH" = "dev" ]; then
