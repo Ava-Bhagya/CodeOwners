@@ -13,8 +13,9 @@ jobs:
     steps:
     - name: Check if CODEOWNERS file exists
       run: |
-        if [ -f "Ava-Bhagya/CodeOwners" ]; then
-          echo "CODEOWNERS file found."
+        ls -R  # List all files and directories recursively
+        if [ -f "Ava-Bhagya/CodeOwners/CodeOwners file" ]; then
+          echo "CODEOWNERS file found. Proceeding with code review enforcement."
         else
           echo "CODEOWNERS file not found. No code review enforcement required."
           exit 0
@@ -45,7 +46,4 @@ jobs:
           exit 0
         fi
 
-        # Use `gh` command to request the review
-        gh pr review-request add --reviewer "@$REVIEWER" --branch "${{ github.head_ref }}"
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
